@@ -125,6 +125,42 @@ $(function () {
     $(window).on('resize', checkHeight); // リサイズ時も再判定
   });
 
+  // -----------------------
+  // ▼ロード画面
+  // -----------------------
+
+  $(function () {
+    var $pre = $('#preloader');
+    if (!$pre.length) return;
+
+    // すでに表示済みなら即スキップ
+    try {
+      if (sessionStorage.getItem('preloaderShown') === '1') {
+        $pre.remove();
+        return;
+      }
+    } catch (e) {}
+
+    // 表示中はスクロール固定
+    $('html, body').addClass('preload-lock');
+
+    // 2秒後にフェードアウト
+    setTimeout(function () {
+      $pre.addClass('is-hidden');
+
+      // 完全に消す
+      setTimeout(function () {
+        $pre.remove();
+        $('html, body').removeClass('preload-lock');
+      }, 450); // CSSのtransitionと合わせる
+    }, 2000);
+
+    // このセッションでは“表示済み”にする
+    try {
+      sessionStorage.setItem('preloaderShown', '1');
+    } catch (e) {}
+  });
+
 
   // -----------------------
   // ▼フィードイン

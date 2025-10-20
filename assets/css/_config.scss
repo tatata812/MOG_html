@@ -265,7 +265,7 @@ dt {
 .fade-in-onload {
   opacity: 0;
   animation: fadeInOnLoad 0.8s ease forwards;
-  animation-delay: 0.3s;
+  animation-delay: 2.5s;
   /* 表示されてから1秒待つ */
 }
 
@@ -278,7 +278,7 @@ dt {
 .fade-in-onload02 {
   opacity: 0;
   animation: fadeInOnLoad02 1.5s ease forwards;
-  animation-delay: 1.5s;
+  animation-delay: 2.8s;
   /* 表示されてから1秒待つ */
 }
 
@@ -378,4 +378,39 @@ dt {
       list-style: disc;
     }
   }
+}
+
+/* 画面固定のオーバーレイ */
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #23243A;        /* 好みで変更可 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity .4s ease, visibility .4s ease;
+  opacity: 1;
+  visibility: visible;
+
+  &.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .preloader__logo {
+    width: clamp(120px, 20vw, 140px);
+    height: auto;
+    display: block;
+  }
+}
+
+/* ローディング中はスクロールを止めたい場合 */
+html.preload-lock,
+body.preload-lock { overflow: hidden; }
+
+/* 低速アニメーション無効化（アクセシビリティ） */
+@media (prefers-reduced-motion: reduce) {
+  #preloader { transition: none; }
 }
