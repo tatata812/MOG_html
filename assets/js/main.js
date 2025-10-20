@@ -21,7 +21,7 @@ $(function () {
     }
   } else {
     // header-scroll-js がない場合は最初から赤固定
-    $header.css('background-color', '#C52E2E');
+    $header.css('background-color', 'rgba(197, 46, 46, 0.9)');
   }
 
 
