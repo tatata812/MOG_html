@@ -1,5 +1,5 @@
 $main: #C52E2E;
-$sub: #b57322;
+$sub: #22b5b3;
 
 @mixin sp {
   @media (max-width:(520px)) {
@@ -25,26 +25,38 @@ $sub: #b57322;
 
 .subpage {
 
-  &__ttl-wrap {
-    border-bottom: 1px solid #eee;
-    padding: 0 12px;
+  &.main {
+  margin: 90px 0 0;
+
+
+  @include tab {
+    margin: 50px 0 0;
   }
 
-  &__ttl-inner {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 60px 12px;
+}
 
-    @include tab {
-      padding: 24px 12px;
+  &__inner {
+    padding: 80px 16px;
+    max-width: 980px;
+    margin: 0 auto;
+
+    @include tab{
+        padding: 40px 16px;
+
     }
   }
 
+  &__ttl-wrap {
+    padding: 40px 16px;
+    border-bottom: #43445F 1px solid;
+  }
+
   &__ttl {
-    font-size: 36px;
+    font-size: 32px;
     font-weight: bold;
     line-height: 1.4;
-    text-align: center;
+    max-width: 960px;
+    margin: 0 auto;
 
 
     @include sp {
@@ -64,8 +76,11 @@ $sub: #b57322;
   }
 
   &__date {
-    text-align: center;
+    max-width: 960px;
+    margin: 0 auto;
     display: block;
+    font-size: 14px;
+    padding: 0 4px;
   }
 
   &__main {
@@ -80,178 +95,24 @@ $sub: #b57322;
     max-width: 880px;
     margin: 0 auto;
   }
-}
 
-/* =================================
-ニュース
- ================================= */
+  &__btn {
+    display: block;
+    width: 200px;
+    margin: 0 auto 80px;
+    background-color: #fff;
+    border: $main 2px solid;
+    padding: 10px 20px;
+    border-radius: 24px;
 
-.page-news {
-
-  &__article-wrap {
-    max-width: 880px;
-    margin: 0 auto 60px;
-  }
-
-  &__pager {
-    text-align: center;
-  }
-}
-
-/* =================================
-記事詳細
- ================================= */
-
-.single {
-
-  &__content-wrap {
-    max-width: 880px;
-    margin: 0 auto;
-  }
-
-  &__ content {
-    margin: 0 0 80px;
-  }
-}
-
-/* =================================
-会社概要
- ================================= */
-
-.page-company {
-
-  &__inner {
-    max-width: 880px;
-    margin: 0 auto;
-  }
-
-  &__ttl {
-    color: $sub;
-    font-size: 28px;
-    line-height: 1.4;
-    font-family: "游明朝", "Yu Mincho", "Hiragino Mincho ProN", "MS PMincho", serif;
-    text-align: center;
-
-    @include sp {
-      font-size: 18px;
-      text-align: center;
-    }
-
-    span {
-      display: block;
+    a {
       color: #141414;
-      font-size: 17px;
-
-      @include sp {
-        font-size: 12px;
-      }
-    }
-  }
-
-  &__table {
-
-    width: 100%;
-    margin: 24px auto 80px;
-    border-collapse: collapse;
-
-    @include tab {
-      margin: 24px auto 40px;
-    }
-
-    &--bottom {
-      margin: 24px auto 0;
-
-      @include tab {
-        margin: 24px auto 0;
-      }
-    }
-
-    tr {
-      border-bottom: #c5c5c5 1px solid;
-
-      &:nth-child(odd) {
-        background-color: #f9f9f9;
-      }
-
-      &:first-of-type {
-        border-top: #c5c5c5 1px solid;
-
-      }
-    }
-
-
-    th,
-    td {
-      padding: 20px;
-      vertical-align: top;
-      vertical-align: middle;
-
-      @include tab {
-        padding: 14px 10px;
-      }
-    }
-
-    th {
-      width: 25%;
-      text-align: left;
-      padding-left: 40px;
-      font-weight: normal;
-
-      @include tab {
-        padding-left: 16px;
-      }
-    }
-
-
-    .business-list,
-    .license-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .business-list li,
-    .license-list li {
-      margin-bottom: 12px;
-
-      &:last-of-type {
-        margin-bottom: 0;
-      }
-    }
-
-    .label {
-      color: $main;
-      margin-right: 5px;
-    }
-
-  }
-
-  &__map-wrap {
-    max-width: 480px;
-    margin: 40px auto 80px;
-
-    @include tab {
-      margin: 40px auto 40px;
-    }
-  }
-
-  &__map {
-    height: 0;
-    position: relative;
-    padding-top: 75.25%;
-    overflow: hidden;
-    margin: 0 calc(50% - 50vw);
-    width: 100vw;
-
-    iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      display: block;
     }
   }
 }
+
+
 
 /* =================================
 お問い合わせ
@@ -274,7 +135,7 @@ $sub: #b57322;
       background: $sub;
       color: #fff;
       font-size: 12px;
-      padding: 2px 6px;
+      padding: 0px 6px;
       border-radius: 3px;
       margin-right: 6px;
     }
@@ -289,7 +150,7 @@ $sub: #b57322;
       border-radius: 3px;
       font-size: 16px;
       box-sizing: border-box;
-      margin-bottom: 16px;
+      margin-bottom: 24px;
     }
 
     textarea {
@@ -339,6 +200,15 @@ $sub: #b57322;
       line-height: 2;
 
     }
+  }
+
+  &__form-group {
+    margin: 0 0 24px;
+  }
+
+  &__note {
+    font-size: 12px;
+     color: #c5c5c5;
   }
 }
 

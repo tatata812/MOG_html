@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="email=no,telephone=no,address=no">
+  <!--!!!!!!!!!!!!!!!!!WPでは不要!!!!!!!!!!!!!!!!!!!!!-->
+  <title>お問合せ</title>
+  <meta name="description" content="<?php echo $des; ?>">
+  <!--!!!!!!!!!!!!!!!!!公開時、allに変更する!!!!!!!!!!!!!!!!!!!!!-->
+  <meta name="robots" content="none">
+  <meta property="og:type" content="website">
+  <meta property="og:title"
+    content="<?php wp_title( '-', true, 'right' ); ?><?php bloginfo( 'name' ); ?> | <?php echo $des; ?>">
+  <meta property="og:description" content="<?php echo $des; ?>">
+  <meta property="og:site_name"
+    content="<?php wp_title( '-', true, 'right' ); ?><?php bloginfo( 'name' ); ?> | <?php echo $des; ?>">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:image" content="<?php echo get_template_directory_uri(); ?>assets/img/fb.jpg">
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title"
+    content="<?php wp_title( '-', true, 'right' ); ?><?php bloginfo( 'name' ); ?> | <?php echo $des; ?>">
+  <meta name="twitter:description" content="<?php echo $des; ?>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+  <link rel="stylesheet" href="assets/css/html5reset-1.6.1.css">
+  <link rel="stylesheet" href="assets/css/style.css?20230220">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body class="wrap">
+
+  <!-- トップページだけに.header-scroll-jsつける -->
+  <header class="header">
+    <div class="header__inner">
+      <h1 class="header__ttl-wrap header__item"><a href="index.html" class="header__ttl"><img
+            src="assets/img/top/logo.png" alt="M.O.G Workers株式会社"></a>
+      </h1>
+      <div class="header__center-logo">
+        <img src="assets/img/top/header-center.png" alt="">
+      </div>
+      <nav class="header__menu-wrap header__item">
+        <div class="header__menu-inner">
+          <a href="#business" class="header__menu">事業内容</a>
+          <a href="#strengths" class="header__menu">選ばれる理由</a>
+          <a href="#achievement" class="header__menu">造船実績</a>
+          <a href="#profile" class="header__menu">会社概要</a>
+        </div>
+      </nav>
+      <div class="header__btn-wrap header__item open-btn-js" id="js-hamburger-menu">
+        <img src="assets/img/top/hun-btn.png" alt="">
+      </div>
+    </div>
+    <div class="header-sp">
+      <div class="header-sp__inner">
+        <div class="header-sp__btn-img">
+          <img src="assets/img/top/batsu-btn.png" alt="閉じる">
+        </div>
+        <div class="header-sp__menu">
+          <a href="#business" class="header-sp__menu-item">事業内容</a>
+          <a href="#strengths" class="header-sp__menu-item">選ばれる理由</a>
+          <a href="#achievement" class="header-sp__menu-item">造船実績</a>
+          <a href="#profile" class="header-sp__menu-item">会社概要</a>
+          <a href="contact.html" class="header-sp__menu-item">お問い合わせ</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <div class="main subpage page-contact">
+    <div class="breadcrumbs-wrap">
+      <div class="breadcrumbs-wrap__content">HOME ／ ○○○○ ／ ○○○○</div>
+    </div>
+    <div class="subpage__ttl-wrap">
+      <h1 class="subpage__ttl">お問合せ</h1>
+    </div>
+
+    <div class="subpage__inner">
+      <div class="page-contact__form-wrap">
+
+        <!-- お問い合わせ種別 -->
+        <div class="page-contact__form-group">
+          <label><span class="required">必須</span> お問い合わせ種別</label>
+          <div class="radio-group">
+            <label><input type="radio" name="inquiry_type" value="ship_building" required> 建造船・修繕船に関するお問い合わせ</label>
+            <label><input type="radio" name="inquiry_type" value="recruit" required> 採用に関するお問い合わせ</label>
+            <label><input type="radio" name="inquiry_type" value="other" required> その他・一般のお問い合わせ</label>
+          </div>
+        </div>
+
+        <!-- 名前 -->
+        <label for="name"><span class="required">必須</span> お名前</label>
+        <input id="name" type="text" name="name" required placeholder="例）山田　太郎" autocomplete="name">
+
+        <!-- フリガナ -->
+        <label for="kana">フリガナ</label>
+        <p class="page-contact__note">※フリガナ入力欄は全角カタカナで入力して下さい。</p>
+        <input id="kana" type="text" name="kana" placeholder="例）ヤマダ　タロウ" inputmode="katakana">
+
+        <!-- 郵便番号 -->
+        <label for="zip">郵便番号</label>
+        <p class="page-contact__note">※半角英数字で入力して下さい。</p>
+        <input id="zip" type="text" name="zip" placeholder="例）111-2222" inputmode="numeric" pattern="\d{3}-?\d{4}"
+          title="例：123-4567">
+
+        <!-- 住所 -->
+        <label for="address">住所</label>
+        <input id="address" type="text" name="address" placeholder="例）〇〇県〇〇市〇〇町〇〇番地" autocomplete="street-address">
+
+        <!-- メールアドレス -->
+        <label for="email"><span class="required">必須</span> メールアドレス</label>
+        <input id="email" type="email" name="email" required placeholder="例）xxx@sample.com" autocomplete="email">
+
+        <!-- 確認用メールアドレス -->
+        <label for="email_confirm"><span class="required">必須</span> 確認用メールアドレス</label>
+        <input id="email_confirm" type="email" name="email_confirm" required placeholder="例）xxx@sample.com"
+          autocomplete="email">
+
+        <!-- ご意見・ご質問など -->
+        <label for="message"><span class="required">必須</span> ご意見・ご質問など</label>
+        <textarea id="message" name="message" required rows="6"></textarea>
+
+        <label><span>必須</span>同意確認</label>
+        <p class="checkbox-text">「<a href="privacy.html">プライバシーポリシー</a>」をお読みいただき<br class="sp-block">チェックを入れてください</p>
+
+        <div class="checkbox-wrap">
+          <input type="checkbox" name="agree" required id="agree">
+          <label for="agree">同意する</label>
+        </div>
+        <button type="submit">送信する</button>
+      </div>
+
+    </div>
+
+
+
+  </div>
+  <!--main end-->
+
+  <footer class="footer">
+    <a href="" class="footer__logo"> <img src="assets/img/top/footer-logo.png" alt="MOG"></a>
+    <p class="footer__ttl"><img src="assets/img/top/logo.png" alt="M.O.G Workers株式会社"></p>
+    <p class="footer__text">〒859-4752<span>長崎県松浦市御厨町里免326-3</span></p>
+    <div class="footer__link-wrap">
+      <a href="contact.html" class="footer__link">お問合わせ</a>
+      <a href="privacy.html" class="footer__link">プライバシーポリシー</a>
+    </div>
+
+    <div class="footer__bottom">
+      &copy;2025 M.O.G Workers Co., Ltd.
+    </div>
+  </footer>
+  <a href="contact.html" class="follow-bar"><img src="assets/img/top/side-follow.png" alt="お問合せ"></a>
+  <a href="contact.html" class="follow-bar-sp"><img src="assets/img/top/bottom-follow.png" alt=""></a>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script src="assets/js/main.js">
+  </script>
+</body>
+
+</html>
