@@ -1,8 +1,9 @@
 $(function () {
 
-  // ヘッダーの色変わる
+  // -----------------------
+  // ▼ ヘッダーの色変わる
+  // -----------------------
   const $header = $('.header');
-
   // .header-scroll-js が付いている場合だけスクロール処理を適用
   if ($header.hasClass('header-scroll-js')) {
     const threshold = 50;
@@ -25,33 +26,53 @@ $(function () {
   }
 
 
-  // SPメニュー
-$(function () {
-  const headerHeight = 120; // ヘッダーの高さ
-  const speed = 500;
 
   // -----------------------
   // ▼ ページ内リンククリック時
   // -----------------------
-  $('a[href^="#"]').on('click', function (e) {
-    const href = $(this).attr('href');
-    const target = href === '#' || href === '' ? 'html' : href;
-    const $target = $(target);
+  $(function () {
+    const headerHeight = 120; // ヘッダーの高さ
+    const speed = 500;
 
-    if (!$target.length) return; // ターゲットが存在しないなら何もしない
-    e.preventDefault();
+    $('a[href^="#"]').on('click', function (e) {
+      const href = $(this).attr('href');
+      const target = href === '#' || href === '' ? 'html' : href;
+      const $target = $(target);
 
-    const position = $target.offset().top - headerHeight;
+      if (!$target.length) return; // ターゲットが存在しないなら何もしない
+      e.preventDefault();
 
-    // スクロール＋メニュー閉じ
-    $('html, body').animate({ scrollTop: position }, speed, 'swing');
+      const position = $target.offset().top - headerHeight;
 
-    // SPメニューを閉じる（クリック時点で閉じてOK）
-    $('.header-sp, .black-bg, .header').removeClass('active');
-    $('.hamburger-menu').removeClass('hamburger-menu--open');
-    $('.navigation').slideUp(300);
-    $('body').removeClass('is-fixed');
+      // スクロール＋メニュー閉じ
+      $('html, body').animate({
+        scrollTop: position
+      }, speed, 'swing');
+
+      // SPメニューを閉じる（クリック時点で閉じてOK）
+      $('.header-sp, .black-bg, .header').removeClass('active');
+      $('.hamburger-menu').removeClass('hamburger-menu--open');
+      $('.navigation').slideUp(300);
+      $('body').removeClass('is-fixed');
+    });
   });
+
+  // -----------------------
+  // ▼ 他ページから #id付きで遷移してきたとき
+  // -----------------------
+  $(window).on('load', function () {
+    const hash = location.hash;
+    if (hash) {
+      const $target = $(hash);
+      if ($target.length) {
+        const position = $target.offset().top - headerHeight;
+        $('html, body').animate({
+          scrollTop: position
+        }, speed, 'swing');
+      }
+    }
+  });
+
 
   // -----------------------
   // ▼ ハンバーガーボタン開閉
@@ -72,81 +93,67 @@ $(function () {
     $('body').removeClass('is-fixed');
   });
 
+
+
   // -----------------------
-  // ▼ 他ページから #id付きで遷移してきたとき
+  // ▼ 追従バー
   // -----------------------
-  $(window).on('load', function () {
-    const hash = location.hash;
-    if (hash) {
-      const $target = $(hash);
-      if ($target.length) {
-        const position = $target.offset().top - headerHeight;
-        $('html, body').animate({ scrollTop: position }, speed, 'swing');
+  $(function () {
+    const $bar = $('.follow-bar');
+    const showPoint = 200; // ← スクロールで表示する基準（px）
+
+    function checkHeight() {
+      const windowH = $(window).height();
+      const docH = $(document).height();
+      const scrollable = docH - windowH; // 実際にスクロールできる高さ
+
+      // ▼ ページが「ほとんどスクロールできない（短い）」なら初期表示
+      if (scrollable < 400) { // ← 400px以下なら“短いページ”と判定（調整可）
+        $bar.addClass('is-active');
+      } else {
+        // スクロールイベントで制御
+        $(window).on('scroll.followbar', function () {
+          if ($(this).scrollTop() > showPoint) {
+            $bar.addClass('is-active');
+          } else {
+            $bar.removeClass('is-active');
+          }
+        });
       }
     }
+    checkHeight();
+    $(window).on('resize', checkHeight); // リサイズ時も再判定
   });
-});
 
 
-// 追従バー
-$(function () {
-  const $bar = $('.follow-bar');
-  const showPoint = 200; // ← スクロールで表示する基準（px）
+  // -----------------------
+  // ▼フィードイン
+  // -----------------------
+  $(function () {
+    function fadeInOnScroll() {
+      $('.fade-in-up, .fade-in-right, .fade-in-zoom,.fade-in-left').each(function () {
+        var elemPos = $(this).offset().top;
+        var scroll = $(window).scrollTop();
+        var windowHeight = $(window).height();
 
-  function checkHeight() {
-    const windowH = $(window).height();
-    const docH = $(document).height();
-    const scrollable = docH - windowH; // 実際にスクロールできる高さ
-
-    // ▼ ページが「ほとんどスクロールできない（短い）」なら初期表示
-    if (scrollable < 400) { // ← 400px以下なら“短いページ”と判定（調整可）
-      $bar.addClass('is-active');
-    } else {
-      // スクロールイベントで制御
-      $(window).on('scroll.followbar', function () {
-        if ($(this).scrollTop() > showPoint) {
-          $bar.addClass('is-active');
-        } else {
-          $bar.removeClass('is-active');
+        if (scroll > elemPos - windowHeight + 100) {
+          if ($(this).hasClass('fade-in-zoom')) {
+            // zoomだけ遅延
+            var el = $(this);
+            setTimeout(function () {
+              el.addClass('action');
+            }, 300); // 0.3秒遅延
+          } else {
+            $(this).addClass('action');
+          }
         }
       });
     }
-  }
 
-  checkHeight();
-  $(window).on('resize', checkHeight); // リサイズ時も再判定
-});
-
-
-  //フェードイン
-$(function() {
-  function fadeInOnScroll() {
-    $('.fade-in-up, .fade-in-right, .fade-in-zoom,.fade-in-left').each(function() {
-      var elemPos = $(this).offset().top;
-      var scroll = $(window).scrollTop();
-      var windowHeight = $(window).height();
-
-      if (scroll > elemPos - windowHeight + 100) {
-        if ($(this).hasClass('fade-in-zoom')) {
-          // zoomだけ遅延
-          var el = $(this);
-          setTimeout(function(){
-            el.addClass('action');
-          }, 300); // 0.3秒遅延
-        } else {
-          $(this).addClass('action');
-        }
-      }
-    });
-  }
-
-  fadeInOnScroll();
-
-  $(window).on('scroll', function() {
     fadeInOnScroll();
+
+    $(window).on('scroll', function () {
+      fadeInOnScroll();
+    });
   });
-});
-
-
-
 })

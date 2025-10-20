@@ -38,16 +38,11 @@ body {
 p {
   font-size: clamp(0.875rem, 0.83rem + 0.23vw, 1rem);
   color: #fff;
-
-
-
 }
 
 a {
   font-size: clamp(0.875rem, 0.83rem + 0.23vw, 1rem);
   color: #fff;
-
-
 
   &:hover {
     cursor: pointer;
@@ -82,8 +77,6 @@ dt {
   font-size: clamp(0.875rem, 0.83rem + 0.23vw, 1rem);
 }
 
-
-
 .pc-block {
   display: block;
 
@@ -101,11 +94,7 @@ dt {
 }
 
 
-
-
 // 追従バー
-
-
 .follow-bar {
   position: fixed;
   right: 0;
@@ -152,14 +141,10 @@ dt {
     width: 100px;
   }
 
-
-
   @include tab {
     display: block;
   }
 }
-
-
 
 
 // パンくずリスト
@@ -174,7 +159,6 @@ dt {
 }
 
 // ページャー 
-
 .pager-wrap {
   margin: 40px 0 80px;
   text-align: center;
@@ -184,7 +168,6 @@ dt {
     margin: 24px 0 60px;
   }
 }
-
 
 
 // 疑似要素矢印
@@ -208,10 +191,6 @@ dt {
   }
 
 }
-
-
-
-
 
 
 // フェードイン
