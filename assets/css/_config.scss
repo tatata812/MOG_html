@@ -1,5 +1,5 @@
 $main: #C52E2E;
-$sub: #22b5b3;
+$sub: #2A52BE;
 
 @mixin sp {
   @media (max-width:(520px)) {
@@ -362,7 +362,6 @@ dt {
   h2 {
     font-size: 22px;
     margin: 24px 0 8px;
-    color: $sub;
     font-weight: bold;
 
     @include sp {
