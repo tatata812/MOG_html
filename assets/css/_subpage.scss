@@ -171,7 +171,7 @@ $sub: #22b5b3;
       margin-left: 4px;
     }
 
-    button {
+    input[type="submit"] {
       display: block;
       border: $main 3px solid;
       background-color: #fff;
@@ -180,6 +180,7 @@ $sub: #22b5b3;
       width: 200px;
       text-align: center;
       margin: 60px auto 0;
+      color: #141414;
     }
 
     .checkbox-wrap {

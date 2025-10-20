@@ -441,7 +441,7 @@ dt {
   font-weight: normal;
   margin-left: 4px;
 }
-.page-contact__form-wrap button {
+.page-contact__form-wrap input[type=submit] {
   display: block;
   border: #C52E2E 3px solid;
   background-color: #fff;
@@ -450,6 +450,7 @@ dt {
   width: 200px;
   text-align: center;
   margin: 60px auto 0;
+  color: #141414;
 }
 .page-contact__form-wrap .checkbox-wrap {
   display: flex;
