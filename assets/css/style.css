@@ -87,6 +87,9 @@ dt {
   transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
   cursor: pointer;
 }
+.follow-bar img {
+  height: 104px;
+}
 .follow-bar.is-active {
   opacity: 1;
   visibility: visible;
